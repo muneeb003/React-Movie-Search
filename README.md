@@ -32,3 +32,4 @@ Welcome to the Movie Search and Favorites App! This React application allows use
 
 We welcome contributions to improve this app! If you have suggestions for new features or improvements, please feel free to open an issue or create a pull request.
 
+
