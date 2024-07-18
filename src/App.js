@@ -24,6 +24,10 @@ function App() {
     getMoviesRequest(searchValue);
   }, [searchValue]);
 
+  useEffect(() => {
+    const favs = JSON.parse(localStorage.getItem("Favourite-Movies"));
+    setFavourite(favs);
+  }, []);
   const addFavourite = (movie) => {
     const movieExists = favourite.some((fav) => fav.imdbID === movie.imdbID);
 
@@ -31,6 +35,7 @@ function App() {
       setLike(true);
       const newFavouriteList = [...favourite, movie];
       setFavourite(newFavouriteList);
+      saveToLocal(newFavouriteList);
     }
   };
 
@@ -38,6 +43,11 @@ function App() {
     setLike(false);
     const newFavouriteList = favourite.filter((f) => f.imdbID !== movie.imdbID);
     setFavourite(newFavouriteList);
+    saveToLocal(newFavouriteList);
+  };
+
+  const saveToLocal = (items) => {
+    localStorage.setItem("Favourite-Movies", JSON.stringify(items));
   };
   return (
     <div className="container-fluid movie-app">
